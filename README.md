@@ -1,8 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Scientific Calculator
 
-## Getting Started
+![Calculator Preview](preview.png)
 
-First, run the development server:
+A modern, feature-rich scientific calculator built with Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui. This calculator combines elegant design with powerful functionality, offering both basic arithmetic and advanced scientific operations.
+
+## ✨ Features
+
+### Basic Operations
+
+- ➕ Addition
+- ➖ Subtraction
+- ✖️ Multiplication
+- ➗ Division
+- 🔢 Decimal numbers
+- ±️ Positive/negative toggle
+
+### Scientific Functions
+
+- 📐 Trigonometric functions (sin, cos, tan)
+- 📊 Logarithmic calculations
+- 🔲 Square and cube functions
+- √ Square root
+- π Pi constant
+- ^ Power operations
+
+### User Experience
+
+- ⌨️ Full keyboard support
+- 🔙 Backspace functionality
+- 🧹 Clear function (C)
+- 🎯 Responsive design
+- 🌓 Dark mode UI
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 16.8 or later
+- npm or yarn or pnpm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/nextjs-calculator.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +65,95 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎮 Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Keyboard Shortcuts
 
-## Learn More
+| Key       | Function          |
+| --------- | ----------------- |
+| 0-9       | Numbers           |
+| .         | Decimal point     |
+| +         | Addition          |
+| -         | Subtraction       |
+| \*        | Multiplication    |
+| /         | Division          |
+| ^         | Power             |
+| Enter/=   | Calculate         |
+| Backspace | Delete last digit |
+| Escape    | Clear all         |
 
-To learn more about Next.js, take a look at the following resources:
+### Scientific Operations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Trigonometric Functions**: Click sin, cos, or tan buttons
+- **Square/Cube**: Use x² or x³ buttons
+- **Square Root**: Click √ button
+- **Logarithm**: Use log button
+- **Pi Constant**: Click π button
+- **Power**: Use ^ button
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Built With
 
-## Deploy on Vercel
+- [Next.js 14](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [shadcn/ui](https://ui.shadcn.com/) - UI components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📱 Responsive Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The calculator is fully responsive and works on:
+
+- 💻 Desktop
+- 📱 Mobile devices
+- 📟 Tablets
+
+## 🔧 Customization
+
+### Theme Modification
+
+The calculator uses Tailwind CSS for styling. You can modify the appearance by:
+
+1. Adjusting colors in `tailwind.config.js`
+2. Modifying component styles in the Calculator component
+3. Customizing shadcn/ui theme variables
+
+### Adding New Functions
+
+To add new scientific functions:
+
+1. Add new button to `scientificButtons` array
+2. Implement handler in `handleScientific` function
+3. Add corresponding keyboard shortcut if needed
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## 🙏 Acknowledgments
+
+- [Next.js team](https://nextjs.org/)
+- [shadcn](https://ui.shadcn.com/) for the amazing UI components
+- [Tailwind CSS](https://tailwindcss.com/) team
+
+## 📧 Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+
+Project Link: [https://github.com/yourusername/nextjs-calculator](https://github.com/yourusername/nextjs-calculator)
+
+---
+
+Made with ❤️ using Next.js

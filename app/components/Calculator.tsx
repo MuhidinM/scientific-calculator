@@ -10,7 +10,6 @@ type CalculatorProps = {
 };
 
 export default function Calculator() {
-  // Add mounted state to prevent hydration mismatch
   const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<CalculatorProps>({
     displayValue: "0",
@@ -18,20 +17,45 @@ export default function Calculator() {
     operator: null,
   });
 
-  // Use useEffect to handle client-side mounting
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Return null or loading state until component is mounted
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if ("0123456789.".includes(e.key)) {
+        if (e.key === "." && state.displayValue.includes(".")) return;
+        handleNumber(e.key);
+      } else if (["+", "-"].includes(e.key)) {
+        handleOperator(e.key);
+      } else if (e.key === "*") {
+        handleOperator("×");
+      } else if (e.key === "/") {
+        handleOperator("÷");
+      } else if (e.key === "^") {
+        handleOperator("^");
+      } else if (e.key === "Enter" || e.key === "=") {
+        calculate();
+      } else if (e.key === "Backspace") {
+        handleBackspace();
+      } else if (e.key === "Escape") {
+        handleClear();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [state]);
+
   if (!mounted) {
-    return null; // or return a loading spinner
+    return null;
   }
 
   const scientificButtons = [
-    ["sin", "cos", "tan", "π"],
-    ["√", "x²", "x³", "^"],
-    ["(", ")", "%", "÷"],
+    ["%", "MR", "⌫", "C"],
+    ["log", "sin", "cos", "tan"],
+    ["π", "√", "x²", "x³"],
+    ["(", ")", "^", "÷"],
     ["7", "8", "9", "×"],
     ["4", "5", "6", "-"],
     ["1", "2", "3", "+"],
@@ -39,9 +63,14 @@ export default function Calculator() {
   ];
 
   const handleNumber = (num: string) => {
+    if (num === "." && state.displayValue.includes(".")) return;
+
     setState((prev) => ({
       ...prev,
-      displayValue: prev.displayValue === "0" ? num : prev.displayValue + num,
+      displayValue:
+        prev.displayValue === "0" && num !== "."
+          ? num
+          : prev.displayValue + num,
     }));
   };
 
@@ -51,6 +80,22 @@ export default function Calculator() {
       previousValue: prev.displayValue,
       operator: op,
     }));
+  };
+
+  const handleBackspace = () => {
+    setState((prev) => ({
+      ...prev,
+      displayValue:
+        prev.displayValue.length > 1 ? prev.displayValue.slice(0, -1) : "0",
+    }));
+  };
+
+  const handleClear = () => {
+    setState({
+      displayValue: "0",
+      previousValue: "",
+      operator: null,
+    });
   };
 
   const calculate = () => {
@@ -111,6 +156,9 @@ export default function Calculator() {
       case "x³":
         result = Math.pow(current, 3);
         break;
+      case "log":
+        result = Math.log10(current);
+        break;
     }
 
     setState({
@@ -118,6 +166,15 @@ export default function Calculator() {
       previousValue: "",
       operator: null,
     });
+  };
+
+  const toggleSign = () => {
+    setState((prev) => ({
+      ...prev,
+      displayValue: prev.displayValue.startsWith("-")
+        ? prev.displayValue.slice(1)
+        : "-" + prev.displayValue,
+    }));
   };
 
   return (
@@ -133,7 +190,9 @@ export default function Calculator() {
             <Button
               key={`${i}-${j}`}
               variant="secondary"
-              className="p-4 text-lg"
+              className={`p-4 text-lg ${
+                btn === "C" ? "bg-red-500 hover:bg-red-600" : ""
+              }`}
               onClick={() => {
                 if ("0123456789.".includes(btn)) {
                   handleNumber(btn);
@@ -141,6 +200,12 @@ export default function Calculator() {
                   handleOperator(btn);
                 } else if (btn === "=") {
                   calculate();
+                } else if (btn === "C") {
+                  handleClear();
+                } else if (btn === "⌫") {
+                  handleBackspace();
+                } else if (btn === "±") {
+                  toggleSign();
                 } else {
                   handleScientific(btn);
                 }

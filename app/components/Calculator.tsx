@@ -17,51 +17,6 @@ export default function Calculator() {
     operator: null,
   });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if ("0123456789.".includes(e.key)) {
-        if (e.key === "." && state.displayValue.includes(".")) return;
-        handleNumber(e.key);
-      } else if (["+", "-"].includes(e.key)) {
-        handleOperator(e.key);
-      } else if (e.key === "*") {
-        handleOperator("×");
-      } else if (e.key === "/") {
-        handleOperator("÷");
-      } else if (e.key === "^") {
-        handleOperator("^");
-      } else if (e.key === "Enter" || e.key === "=") {
-        calculate();
-      } else if (e.key === "Backspace") {
-        handleBackspace();
-      } else if (e.key === "Escape") {
-        handleClear();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [state]);
-
-  if (!mounted) {
-    return null;
-  }
-
-  const scientificButtons = [
-    ["%", "MR", "⌫", "C"],
-    ["log", "sin", "cos", "tan"],
-    ["π", "√", "x²", "x³"],
-    ["(", ")", "^", "÷"],
-    ["7", "8", "9", "×"],
-    ["4", "5", "6", "-"],
-    ["1", "2", "3", "+"],
-    ["±", "0", ".", "="],
-  ];
-
   const handleNumber = (num: string) => {
     if (num === "." && state.displayValue.includes(".")) return;
 
@@ -76,7 +31,7 @@ export default function Calculator() {
 
   const handleOperator = (op: string) => {
     setState((prev) => ({
-      displayValue: "0",
+      displayValue: op,
       previousValue: prev.displayValue,
       operator: op,
     }));
@@ -129,6 +84,80 @@ export default function Calculator() {
       operator: null,
     });
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if ("0123456789.".includes(e.key)) {
+        if (e.key === "." && state.displayValue.includes(".")) return;
+        handleNumber(e.key);
+      } else if (["+", "-"].includes(e.key)) {
+        handleOperator(e.key);
+      } else if (e.key === "*" || e.key.toLowerCase() === "x") {
+        handleOperator("×");
+      } else if (e.key === "/") {
+        handleOperator("÷");
+      } else if (e.key === "^") {
+        handleOperator("^");
+      } else if (e.key === "Enter" || e.key === "=") {
+        calculate();
+      } else if (e.key === "Backspace") {
+        handleBackspace();
+      } else if (e.key === "Escape" || e.key.toLowerCase() === "c") {
+        handleClear();
+      }
+
+      if (e.altKey) {
+        switch (e.key.toLowerCase()) {
+          case "l":
+            handleScientific("log");
+            break;
+          case "s":
+            handleScientific("sin");
+            break;
+          case "o":
+            handleScientific("cos");
+            break;
+          case "t":
+            handleScientific("tan");
+            break;
+          case "p":
+            handleScientific("π");
+            break;
+          case "r":
+            handleScientific("√");
+            break;
+          case "q":
+            handleScientific("x²");
+            break;
+          case "u":
+            handleScientific("x³");
+            break;
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [state]);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const scientificButtons = [
+    ["%", "MR", "⌫", "C"],
+    ["log", "sin", "cos", "tan"],
+    ["π", "√", "x²", "x³"],
+    ["(", ")", "^", "÷"],
+    ["7", "8", "9", "×"],
+    ["4", "5", "6", "-"],
+    ["1", "2", "3", "+"],
+    ["±", "0", ".", "="],
+  ];
 
   const handleScientific = (func: string) => {
     const current = parseFloat(state.displayValue);

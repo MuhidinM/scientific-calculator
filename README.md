@@ -73,18 +73,31 @@ pnpm dev
 
 ### Keyboard Shortcuts
 
-| Key       | Function          |
-| --------- | ----------------- |
-| 0-9       | Numbers           |
-| .         | Decimal point     |
-| +         | Addition          |
-| -         | Subtraction       |
-| \*        | Multiplication    |
-| /         | Division          |
-| ^         | Power             |
-| Enter/=   | Calculate         |
-| Backspace | Delete last digit |
-| Escape    | Clear all         |
+| Key         | Function          |
+| ----------- | ----------------- |
+| 0-9         | Numbers           |
+| .           | Decimal point     |
+| +           | Addition          |
+| -           | Subtraction       |
+| \* or x     | Multiplication    |
+| /           | Division          |
+| ^           | Power             |
+| Enter or =  | Calculate         |
+| Backspace   | Delete last digit |
+| Escape or C | Clear all         |
+
+### Scientific Function Shortcuts (with Alt key)
+
+| Alt + Key | Function    |
+| --------- | ----------- |
+| Alt + L   | Logarithm   |
+| Alt + S   | Sine        |
+| Alt + O   | Cosine      |
+| Alt + T   | Tangent     |
+| Alt + P   | Pi          |
+| Alt + R   | Square Root |
+| Alt + Q   | Square      |
+| Alt + U   | Cube        |
 
 ### Scientific Operations
 

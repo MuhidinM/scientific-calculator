@@ -44,7 +44,7 @@ A modern, feature-rich scientific calculator built with Next.js 14, TypeScript, 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/nextjs-calculator.git
+git clone https://github.com/MuhidinM/scientific-calculator
 ```
 
 2. Install dependencies:
@@ -163,9 +163,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 📧 Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Muhidin Misbah - [@Telegram](https://t.me/muhidinmisbah)
 
-Project Link: [https://github.com/yourusername/nextjs-calculator](https://github.com/yourusername/nextjs-calculator)
+Project Link: [https://github.com/MuhidinM/scientific-calculator](https://github.com/MuhidinM/scientific-calculator)
 
 ---
 
